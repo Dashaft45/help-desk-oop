@@ -10,9 +10,16 @@ public class Main {
             "После перезагрузки компьютера пропало подключение"
         );
 
-        System.out.println("Заявка #" + ticket.id + ": " + ticket.title + " | " + ticket.status);
+        System.out.println("Заявка #" + ticket.getId() + ": " + ticket.getTitle() + " | " + ticket.getStatus());
 
-        ticket.status = "БАНАН";
-        System.out.println("Новый статус: " + ticket.status);
+        ticket.startProcessing();
+        System.out.println("Статус: " + ticket.getStatus());
+
+        ticket.resolve();
+        System.out.println("Статус: " + ticket.getStatus());
+
+        ticket.close();
+        System.out.println("Статус: " + ticket.getStatus());
+
     }
 }
