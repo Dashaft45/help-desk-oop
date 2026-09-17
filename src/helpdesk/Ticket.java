@@ -23,7 +23,7 @@ public class Ticket {
             System.out.println("Ошибка: в работу можно взять только новую заявку (текущий статус: " + status + ")");
             return;
         }
-        status = TicketStatus.IN_PROGRES;
+        status = TicketStatus.IN_PROGRESS;
     }
 
     public void resolve() {
