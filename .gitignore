@@ -1,0 +1,14 @@
+# Скомпелированные файлы Java
+*.class
+
+# Настройки VS Code
+.vscode/
+
+# Настройки IntelliJ IDEA
+.idea/
+*.iml
+
+# Файлы сборки
+out/
+build/
+bin/
