@@ -21,5 +21,15 @@ public class Main {
         ticket.close();
         System.out.println("Статус: " + ticket.getStatus());
 
+        System.out.println("\n=== Проверка запретов ===");
+
+        Ticket brokenTicket = new Ticket(2, "Тестовая заявка", "Проверка недопустимых переходов");
+
+        brokenTicket.resolve();
+        System.out.println("После попытки resolve y NEW: " + brokenTicket.getStatus());
+
+        brokenTicket.close();
+        System.out.println("После попытки close y NEW: " + brokenTicket.getStatus());
+
     }
 }

@@ -19,14 +19,26 @@ public class Ticket {
     public String getStatus() { return status; }
 
     public void startProcessing() {
+        if (!status.equals("NEW")) {
+            System.out.println("Ошибка: в работу можно взять только новую заявку (текущий статус: " + status + ")");
+            return;
+        }
         status = "IN_PROGRESS";
     }
 
     public void resolve() {
+        if (!status.equals("IN_PROGRESS")) {
+            System.out.println("Ошибка: решить можно только заявку, которая в работе (текущий статус: " + status + ")");
+            return;
+        }
         status = "RESOLVED";
     }
 
     public void close() {
+        if (!status.equals("RESOLVED")) {
+            System.out.println("Ошибка: закрыть можно только решённую заявку (текущий статус: " + status + ")");
+            return;
+        }
         status = "CLOSED";
     }
 
