@@ -31,5 +31,15 @@ public class Main {
         // brokenTicket.close();
         // System.out.println("После попытки close y NEW: " + brokenTicket.getStatus());
 
+        System.out.println("\n=== Проверка наследования ===");
+
+        Customer customer = new Customer(1, "Анна", "anna@mail.ru");
+        SupportAgent agent = new SupportAgent(2, "Сергей", "sergey@helpdesk.ru");
+        Administrator admin = new Administrator(3, "Олег", "admin@helpdesk.ru");
+
+        System.out.println("Клиент: " + customer.getName() + " (" + customer.getEmail() + ")");
+        System.out.println("Специалист: " + agent.getName() + " (" + agent.getEmail() + " )");
+        System.out.println("Администратор: "  + admin.getName() + " (" + admin.getEmail() + " )");
+        
     }
 }
