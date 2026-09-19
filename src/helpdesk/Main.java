@@ -55,8 +55,6 @@ public class Main {
             user.performAction();
         }
 
-        User u = new User(99, "Test", "test@test.ru");
-
     }
 
 }
