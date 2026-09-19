@@ -27,6 +27,22 @@ public class Main {
         ticketService.closeTicket(ticket);
         System.out.println("Статус: " + ticket.getStatus());
 
+        System.out.println("\n=== Репозиторий заявок ===");
+
+        TicketRepository repository = new TicketRepository();
+
+        Ticket t1 = new Ticket(1, "Не работает интернет", "После перезагрузки пропало подключение");
+        Ticket t2 = new Ticket(2, "Ошикбка приложения", "прогрмма пропадает при запуске");
+        Ticket t3 = new Ticket(3, "Не печатает принтер", "Принтер не отвечает на закпросы");
+
+        repository.add(t1);
+        repository.add(t2);
+        repository.add(t3);
+
+        for (Ticket t : repository.findAll()) {
+            System.out.println("#" + t.getId() + " " + t.getTitle() + " | " + t.getStatus());
+        }
+
         // System.out.println("\n=== Проверка запретов ===");
 
         // Ticket brokenTicket = new Ticket(2, "Тестовая заявка", "Проверка недопустимых переходов");
