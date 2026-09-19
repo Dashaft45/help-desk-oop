@@ -7,6 +7,9 @@ public class Main {
     public static void main(String[] args) {
         System.out.println("=== HELP DESK ===");
 
+        NotificationService notificationService = new ConsoleNotificationService();
+        TicketService ticketService = new TicketService(notificationService);
+
         Ticket ticket = new Ticket(
             1,
             "Не работает интернет",
@@ -15,13 +18,13 @@ public class Main {
 
         System.out.println("Заявка #" + ticket.getId() + ": " + ticket.getTitle() + " | " + ticket.getStatus());
 
-        ticket.startProcessing();
+        ticketService.startTicket(ticket);
         System.out.println("Статус: " + ticket.getStatus());
 
-        ticket.resolve();
+        ticketService.resolveTicket(ticket);
         System.out.println("Статус: " + ticket.getStatus());
 
-        ticket.close();
+        ticketService.closeTicket(ticket);
         System.out.println("Статус: " + ticket.getStatus());
 
         // System.out.println("\n=== Проверка запретов ===");
@@ -44,16 +47,16 @@ public class Main {
         // System.out.println("Специалист: " + agent.getName() + " (" + agent.getEmail() + " )");
         // System.out.println("Администратор: "  + admin.getName() + " (" + admin.getEmail() + " )");
 
-        System.out.println("\n=== Полиморфизм ===");
+        // System.out.println("\n=== Полиморфизм ===");
 
-        List<User> users = new ArrayList<>();
-        users.add(new Customer(1, "Анна", "anna@mail.ru"));
-        users.add(new SupportAgent(2, "Сергей", "sergey@helpdesk.ru"));
-        users.add(new Administrator(3, "Олег", "admin@helpdesk.ru"));
+        // List<User> users = new ArrayList<>();
+        // users.add(new Customer(1, "Анна", "anna@mail.ru"));
+        // users.add(new SupportAgent(2, "Сергей", "sergey@helpdesk.ru"));
+        // users.add(new Administrator(3, "Олег", "admin@helpdesk.ru"));
 
-        for (User user : users) {
-            user.performAction();
-        }
+        // for (User user : users) {
+        //     user.performAction();
+        // }
 
     }
 
