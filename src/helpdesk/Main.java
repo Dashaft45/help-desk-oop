@@ -7,13 +7,25 @@ public class Main {
     public static void main(String[] args) {
         System.out.println("=== HELP DESK ===");
 
+
         NotificationService notificationService = new ConsoleNotificationService();
         TicketService ticketService = new TicketService(notificationService);
+        TicketRepository repository = new TicketRepository();
+
+
+        Customer customer = new Customer(1, "Анна Петрова", "anna@mail.ru");
+        SupportAgent agent = new SupportAgent(2, "Сергей Иванов", "sergey@helpdesk.ru");
+        // Administrator admin = new Administrator(3, "Олег Сидоров", "admin@helpdesk.ru");
+
+        System.out.println("Клиент: " + customer.getName());
+        System.out.println("Специалист: " + agent.getName());
+        // System.out.println("Администратор: "  + admin.getName() + " (" + admin.getEmail() + " )");
+
 
         Ticket ticket = new Ticket(
             1,
-            "Не работает интернет",
-            "После перезагрузки компьютера пропало подключение"
+            "Не работает Wi-Fi",
+            "После обновления роутера пропало подключение к беспроводной сети"
         );
 
         System.out.println("Заявка #" + ticket.getId() + ": " + ticket.getTitle() + " | " + ticket.getStatus());
@@ -27,17 +39,22 @@ public class Main {
         ticketService.closeTicket(ticket);
         System.out.println("Статус: " + ticket.getStatus());
 
-        System.out.println("\n=== Репозиторий заявок ===");
+        // System.out.println("\n=== Репозиторий заявок ===");
 
-        TicketRepository repository = new TicketRepository();
+        // TicketRepository repository = new TicketRepository();
 
-        Ticket t1 = new Ticket(1, "Не работает интернет", "После перезагрузки пропало подключение");
-        Ticket t2 = new Ticket(2, "Ошикбка приложения", "прогрмма пропадает при запуске");
-        Ticket t3 = new Ticket(3, "Не печатает принтер", "Принтер не отвечает на закпросы");
+        // Ticket t1 = new Ticket(1, "Не работает интернет", "После перезагрузки пропало подключение");
+        // Ticket t2 = new Ticket(2, "Ошикбка приложения", "прогрмма пропадает при запуске");
+        // Ticket t3 = new Ticket(3, "Не печатает принтер", "Принтер не отвечает на закпросы");
 
-        repository.add(t1);
-        repository.add(t2);
-        repository.add(t3);
+        repository.add(ticket);
+        repository.add(new Ticket(2, "Ошикбка приложения", "прогрмма пропадает при запуске"));
+        repository.add(new Ticket(3, "Не печатает принтер", "Принтер не отвечает на закпросы"));
+
+        // for (Ticket t : repository.findAll()) {
+        //     System.out.println("#" + t.getId() + " " + t.getTitle() + " | " + t.getStatus());
+        // }
+        System.out.println("\n=== Все заявки ===");
 
         for (Ticket t : repository.findAll()) {
             System.out.println("#" + t.getId() + " " + t.getTitle() + " | " + t.getStatus());
@@ -55,23 +72,29 @@ public class Main {
 
         // System.out.println("\n=== Проверка наследования ===");
 
-        // Customer customer = new Customer(1, "Анна", "anna@mail.ru");
-        // SupportAgent agent = new SupportAgent(2, "Сергей", "sergey@helpdesk.ru");
-        // Administrator admin = new Administrator(3, "Олег", "admin@helpdesk.ru");
+        // Customer customer = new Customer(1, "Анна Петрова", "anna@mail.ru");
+        // SupportAgent agent = new SupportAgent(2, "Сергей Иванов", "sergey@helpdesk.ru");
+        // // Administrator admin = new Administrator(3, "Олег Сидоров", "admin@helpdesk.ru");
 
-        // System.out.println("Клиент: " + customer.getName() + " (" + customer.getEmail() + ")");
-        // System.out.println("Специалист: " + agent.getName() + " (" + agent.getEmail() + " )");
-        // System.out.println("Администратор: "  + admin.getName() + " (" + admin.getEmail() + " )");
+        // System.out.println("Клиент: " + customer.getName());
+        // System.out.println("Специалист: " + agent.getName());
+        // // System.out.println("Администратор: "  + admin.getName() + " (" + admin.getEmail() + " )");
 
-        // System.out.println("\n=== Полиморфизм ===");
+        System.out.println("\n=== Полиморфизм ===");
 
-        // List<User> users = new ArrayList<>();
-        // users.add(new Customer(1, "Анна", "anna@mail.ru"));
-        // users.add(new SupportAgent(2, "Сергей", "sergey@helpdesk.ru"));
-        // users.add(new Administrator(3, "Олег", "admin@helpdesk.ru"));
+        List<User> users = new ArrayList<>();
+        users.add(customer);
+        users.add(agent);
+        users.add(new Administrator(3, "Олег Смирнов", "admin@helpdesk.ru"));
 
-        // for (User user : users) {
-        //     user.performAction();
+        for (User user : users) {
+            user.performAction();
+        }
+
+        // System.out.println("\n=== Все заявки ===");
+
+        // for (Ticket t : repository.findAll()) {
+        //     System.out.println("#" + t.getId() + " " + t.getTitle() + " | " + t.getStatus());
         // }
 
     }
