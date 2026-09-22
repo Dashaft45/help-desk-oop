@@ -8,8 +8,11 @@ public class Ticket {
     private TicketPriority priority;
 
     public Ticket(long id, String title, String description, TicketPriority priority) {
+        if (title == null || title.isBlank()) {
+            throw new IllegalArgumentException("Название заявки не может быть пустым");
+        }
         this.id = id;
-        this.title = title;
+        this.title = title.trim();
         this.description = description;
         this.priority = priority;
         this.status = TicketStatus.NEW;

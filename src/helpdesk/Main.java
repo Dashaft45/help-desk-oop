@@ -99,6 +99,15 @@ public class Main {
         //     System.out.println("#" + t.getId() + " " + t.getTitle() + " | " + t.getStatus());
         // }
 
+        System.out.println("\n=== Проверка валидации ===");
+
+        try {
+            Ticket invalidTicket = new Ticket(99, "  ", "Пустое название", TicketPriority.LOW);
+            System.out.println("Этого не должно было случиться!");
+        } catch (IllegalArgumentException e) {
+            System.out.println("Поймали ошибку: " + e.getMessage());
+        }
+
     }
 
 }
