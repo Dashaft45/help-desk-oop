@@ -29,7 +29,7 @@ public class Main {
             TicketPriority.HIGH
         );
 
-        System.out.println("Заявка #" + ticket.getId() + ": " + ticket.getTitle() + " | " + ticket.getStatus() + " | Приоритет: " + ticket.getPriority() + " | Создана: " + ticket.getCreatedAt());
+        System.out.println(ticket);
 
         ticketService.startTicket(ticket);
         System.out.println("Статус: " + ticket.getStatus());
@@ -59,7 +59,7 @@ public class Main {
 
 
         for (Ticket t : repository.findAll()) {
-            System.out.println("#" + t.getId() + " " + t.getTitle() + " | " + t.getStatus() + " | Приоритет: " + t.getPriority() + " | Создана: " + ticket.getCreatedAt());
+            System.out.println(t);
         }
 
         // System.out.println("\n=== Проверка запретов ===");

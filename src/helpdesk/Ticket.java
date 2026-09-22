@@ -53,5 +53,9 @@ public class Ticket {
         status = TicketStatus.CLOSED;
     }
 
-    
+    @Override
+    public String toString() {
+        return "#" + id + " " + title + " | Приоритет: " + priority + " | Статус: " + status + " | Создана: " + createdAt;
+    }
+
 }
