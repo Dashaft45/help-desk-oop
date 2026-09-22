@@ -135,20 +135,34 @@ public class Main {
         // TicketService telegramService = new TicketService(new TelegramNotificationService());
         // telegramService.startTicket(telegramTicket);
 
-        System.out.println("\n=== Поиск по id ===");
+        // System.out.println("\n=== Поиск по id ===");
 
-        Optional<Ticket> found = repository.findById(1);
-        if (found.isPresent()) {
-            System.out.println("Найдена заявка: " + found.get());
-        } else {
-            System.out.println("Заявка с id=1 не найдена");
+        // Optional<Ticket> found = repository.findById(1);
+        // if (found.isPresent()) {
+        //     System.out.println("Найдена заявка: " + found.get());
+        // } else {
+        //     System.out.println("Заявка с id=1 не найдена");
+        // }
+
+        // Optional<Ticket> notFound = repository.findById(999);
+        // if (notFound.isPresent()) {
+        //     System.out.println("Найдена заявка: " + notFound.get());
+        // } else {
+        //     System.out.println("Заявка с id=999 не найдена");
+        // }
+
+        System.out.println("\n=== Заявки в статусе NEW ===");
+
+        List<Ticket> newTickets = repository.findByStatus(TicketStatus.NEW);
+        for (Ticket t : newTickets) {
+            System.out.println(t);
         }
 
-        Optional<Ticket> notFound = repository.findById(999);
-        if (notFound.isPresent()) {
-            System.out.println("Найдена заявка: " + notFound.get());
-        } else {
-            System.out.println("Заявка с id=999 не найдена");
+        System.out.println("\n=== Заявки в статусе CLOSED ===");
+
+        List<Ticket> closedTickets = repository.findByStatus(TicketStatus.CLOSED);
+        for (Ticket t : closedTickets) {
+            System.out.println(t);
         }
 
     }

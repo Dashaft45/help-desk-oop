@@ -25,4 +25,14 @@ public class TicketRepository {
 
     }
 
+    public List<Ticket> findByStatus(TicketStatus status) {
+        List<Ticket> result = new ArrayList<>();
+        for (Ticket ticket : tickets) {
+            if (ticket.getStatus() == status) {
+                result.add(ticket);
+            }
+        }
+        return result;
+    }
+
 }
