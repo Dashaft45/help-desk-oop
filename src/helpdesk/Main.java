@@ -25,7 +25,8 @@ public class Main {
         Ticket ticket = new Ticket(
             1,
             "Не работает Wi-Fi",
-            "После обновления роутера пропало подключение к беспроводной сети"
+            "После обновления роутера пропало подключение к беспроводной сети",
+            TicketPriority.HIGH
         );
 
         System.out.println("Заявка #" + ticket.getId() + ": " + ticket.getTitle() + " | " + ticket.getStatus());
@@ -48,16 +49,17 @@ public class Main {
         // Ticket t3 = new Ticket(3, "Не печатает принтер", "Принтер не отвечает на закпросы");
 
         repository.add(ticket);
-        repository.add(new Ticket(2, "Ошикбка приложения", "прогрмма пропадает при запуске"));
-        repository.add(new Ticket(3, "Не печатает принтер", "Принтер не отвечает на закпросы"));
+        repository.add(new Ticket(2, "Ошикбка приложения", "прогрмма пропадает при запуске", TicketPriority.CRITICAL));
+        repository.add(new Ticket(3, "Не печатает принтер", "Принтер не отвечает на закпросы", TicketPriority.MEDIUM));
 
         // for (Ticket t : repository.findAll()) {
         //     System.out.println("#" + t.getId() + " " + t.getTitle() + " | " + t.getStatus());
         // }
         System.out.println("\n=== Все заявки ===");
 
+
         for (Ticket t : repository.findAll()) {
-            System.out.println("#" + t.getId() + " " + t.getTitle() + " | " + t.getStatus());
+            System.out.println("#" + t.getId() + " " + t.getTitle() + " | " + t.getStatus() + " | Приоритет: " + t.getPriority());
         }
 
         // System.out.println("\n=== Проверка запретов ===");

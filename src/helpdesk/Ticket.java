@@ -5,11 +5,13 @@ public class Ticket {
     private String title;
     private String description;
     private TicketStatus status;
+    private TicketPriority priority;
 
-    public Ticket(long id, String title, String description) {
+    public Ticket(long id, String title, String description, TicketPriority priority) {
         this.id = id;
         this.title = title;
         this.description = description;
+        this.priority = priority;
         this.status = TicketStatus.NEW;
     }
 
@@ -17,6 +19,7 @@ public class Ticket {
     public String getTitle() { return title; }
     public String getDescription() { return description;}
     public TicketStatus getStatus() { return status; }
+    public TicketPriority getPriority() { return priority; }
 
     public void startProcessing() {
         if (!status.equals(TicketStatus.NEW)) {
@@ -42,4 +45,5 @@ public class Ticket {
         status = TicketStatus.CLOSED;
     }
 
+    
 }
