@@ -151,19 +151,38 @@ public class Main {
         //     System.out.println("Заявка с id=999 не найдена");
         // }
 
-        System.out.println("\n=== Заявки в статусе NEW ===");
+        // System.out.println("\n=== Заявки в статусе NEW ===");
 
-        List<Ticket> newTickets = repository.findByStatus(TicketStatus.NEW);
-        for (Ticket t : newTickets) {
-            System.out.println(t);
+        // List<Ticket> newTickets = repository.findByStatus(TicketStatus.NEW);
+        // for (Ticket t : newTickets) {
+        //     System.out.println(t);
+        // }
+
+        // System.out.println("\n=== Заявки в статусе CLOSED ===");
+
+        // List<Ticket> closedTickets = repository.findByStatus(TicketStatus.CLOSED);
+        // for (Ticket t : closedTickets) {
+        //     System.out.println(t);
+        // }
+
+        System.out.println("\n=== Назначение заявок специалисту ===");
+
+        SupportAgent sergey = new SupportAgent(2, "Сергей Иванов", "sergey@helpdesk.ru");
+
+        Ticket t20 = new Ticket(20, "Проблема с VPN", "Не подключается к корпоративной сети", TicketPriority.HIGH);
+        Ticket t21 = new Ticket(21, "Медленный компьютер", "Тормозит при работе с документами", TicketPriority.MEDIUM);
+
+        sergey.assignTicket(t20);
+        sergey.assignTicket(t21);
+
+        System.out.println("\nЗаявок у " + sergey.getName() + ": " + sergey.getAssignedCount());
+        for (Ticket t : sergey.getAssignedTickets()) {
+            System.out.println("  " + t);
         }
 
-        System.out.println("\n=== Заявки в статусе CLOSED ===");
 
-        List<Ticket> closedTickets = repository.findByStatus(TicketStatus.CLOSED);
-        for (Ticket t : closedTickets) {
-            System.out.println(t);
-        }
+        System.out.println("\nПопытка назначить уже взятую заявку:");
+        sergey.assignTicket(t20);
 
     }
 
