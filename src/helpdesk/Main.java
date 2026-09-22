@@ -1,6 +1,7 @@
 package helpdesk;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 
 public class Main {
@@ -82,16 +83,16 @@ public class Main {
         // System.out.println("Специалист: " + agent.getName());
         // // System.out.println("Администратор: "  + admin.getName() + " (" + admin.getEmail() + " )");
 
-        System.out.println("\n=== Полиморфизм ===");
+        // System.out.println("\n=== Полиморфизм ===");
 
-        List<User> users = new ArrayList<>();
-        users.add(customer);
-        users.add(agent);
-        users.add(new Administrator(3, "Олег Смирнов", "admin@helpdesk.ru"));
+        // List<User> users = new ArrayList<>();
+        // users.add(customer);
+        // users.add(agent);
+        // users.add(new Administrator(3, "Олег Смирнов", "admin@helpdesk.ru"));
 
-        for (User user : users) {
-            user.performAction();
-        }
+        // for (User user : users) {
+        //     user.performAction();
+        // }
 
         // System.out.println("\n=== Все заявки ===");
 
@@ -124,15 +125,31 @@ public class Main {
         // closedTicket.cancel();
         // System.out.println("После попытки отмены закрытой: " + closedTicket);
 
-        System.out.println("\n=== Смена канала уведомлений ===");
+        // System.out.println("\n=== Смена канала уведомлений ===");
 
-        Ticket emailTicket = new Ticket(20, "Тест email", "Проверка EmailnotificationService", TicketPriority.MEDIUM);
-        TicketService emailService = new TicketService(new EmailNotificationService());
-        emailService.startTicket(emailTicket);
+        // Ticket emailTicket = new Ticket(20, "Тест email", "Проверка EmailnotificationService", TicketPriority.MEDIUM);
+        // TicketService emailService = new TicketService(new EmailNotificationService());
+        // emailService.startTicket(emailTicket);
 
-        Ticket telegramTicket = new Ticket(21, "Тест telegram", "Проверка TelegramNotificationService", TicketPriority.HIGH);
-        TicketService telegramService = new TicketService(new TelegramNotificationService());
-        telegramService.startTicket(telegramTicket);
+        // Ticket telegramTicket = new Ticket(21, "Тест telegram", "Проверка TelegramNotificationService", TicketPriority.HIGH);
+        // TicketService telegramService = new TicketService(new TelegramNotificationService());
+        // telegramService.startTicket(telegramTicket);
+
+        System.out.println("\n=== Поиск по id ===");
+
+        Optional<Ticket> found = repository.findById(1);
+        if (found.isPresent()) {
+            System.out.println("Найдена заявка: " + found.get());
+        } else {
+            System.out.println("Заявка с id=1 не найдена");
+        }
+
+        Optional<Ticket> notFound = repository.findById(999);
+        if (notFound.isPresent()) {
+            System.out.println("Найдена заявка: " + notFound.get());
+        } else {
+            System.out.println("Заявка с id=999 не найдена");
+        }
 
     }
 
