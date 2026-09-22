@@ -29,7 +29,7 @@ public class Main {
             TicketPriority.HIGH
         );
 
-        System.out.println("Заявка #" + ticket.getId() + ": " + ticket.getTitle() + " | " + ticket.getStatus());
+        System.out.println("Заявка #" + ticket.getId() + ": " + ticket.getTitle() + " | " + ticket.getStatus() + " | Приоритет: " + ticket.getPriority() + " | Создана: " + ticket.getCreatedAt());
 
         ticketService.startTicket(ticket);
         System.out.println("Статус: " + ticket.getStatus());
@@ -59,7 +59,7 @@ public class Main {
 
 
         for (Ticket t : repository.findAll()) {
-            System.out.println("#" + t.getId() + " " + t.getTitle() + " | " + t.getStatus() + " | Приоритет: " + t.getPriority());
+            System.out.println("#" + t.getId() + " " + t.getTitle() + " | " + t.getStatus() + " | Приоритет: " + t.getPriority() + " | Создана: " + ticket.getCreatedAt());
         }
 
         // System.out.println("\n=== Проверка запретов ===");
@@ -99,14 +99,14 @@ public class Main {
         //     System.out.println("#" + t.getId() + " " + t.getTitle() + " | " + t.getStatus());
         // }
 
-        System.out.println("\n=== Проверка валидации ===");
+        // System.out.println("\n=== Проверка валидации ===");
 
-        try {
-            Ticket invalidTicket = new Ticket(99, "  ", "Пустое название", TicketPriority.LOW);
-            System.out.println("Этого не должно было случиться!");
-        } catch (IllegalArgumentException e) {
-            System.out.println("Поймали ошибку: " + e.getMessage());
-        }
+        // try {
+        //     Ticket invalidTicket = new Ticket(99, "  ", "Пустое название", TicketPriority.LOW);
+        //     System.out.println("Этого не должно было случиться!");
+        // } catch (IllegalArgumentException e) {
+        //     System.out.println("Поймали ошибку: " + e.getMessage());
+        // }
 
     }
 

@@ -1,11 +1,14 @@
 package helpdesk;
 
+import java.time.LocalDateTime;
+
 public class Ticket {
     private long id;
     private String title;
     private String description;
     private TicketStatus status;
     private TicketPriority priority;
+    private LocalDateTime createdAt;
 
     public Ticket(long id, String title, String description, TicketPriority priority) {
         if (title == null || title.isBlank()) {
@@ -16,6 +19,7 @@ public class Ticket {
         this.description = description;
         this.priority = priority;
         this.status = TicketStatus.NEW;
+        this.createdAt = LocalDateTime.now();
     }
 
     public long getId() { return id; }
@@ -23,6 +27,7 @@ public class Ticket {
     public String getDescription() { return description;}
     public TicketStatus getStatus() { return status; }
     public TicketPriority getPriority() { return priority; }
+    public LocalDateTime getCreatedAt() { return createdAt; }
 
     public void startProcessing() {
         if (!status.equals(TicketStatus.NEW)) {
