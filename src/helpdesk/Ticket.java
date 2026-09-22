@@ -53,6 +53,14 @@ public class Ticket {
         status = TicketStatus.CLOSED;
     }
 
+    public void cancel() {
+        if (status == TicketStatus.CLOSED || status == TicketStatus.CANCELLED) {
+            System.out.println("Ошибка: нельзя отменить заявку в статусе " + status);
+            return;
+        }
+        status = TicketStatus.CANCELLED;
+    }
+
     @Override
     public String toString() {
         return "#" + id + " " + title + " | Приоритет: " + priority + " | Статус: " + status + " | Создана: " + createdAt;

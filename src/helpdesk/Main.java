@@ -108,6 +108,22 @@ public class Main {
         //     System.out.println("Поймали ошибку: " + e.getMessage());
         // }
 
+        System.out.println("\n=== Проверка отмены ===");
+
+        Ticket cancelable = new Ticket(10, "Отменяемая заявка", "Проверка cancel()", TicketPriority.LOW);
+        System.out.println("До отмены: " + cancelable);
+        cancelable.cancel();
+        System.out.println("После отмены " + cancelable);
+
+        cancelable.cancel();
+
+        Ticket closedTicket = new Ticket(11, "Закрытая заявка", "Проверка cancel() на CLOSED", TicketPriority.LOW);
+        closedTicket.startProcessing();
+        closedTicket.resolve();
+        closedTicket.close();
+        closedTicket.cancel();
+        System.out.println("После попытки отмены закрытой: " + closedTicket);
+
     }
 
 }
