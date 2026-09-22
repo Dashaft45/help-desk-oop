@@ -108,21 +108,31 @@ public class Main {
         //     System.out.println("Поймали ошибку: " + e.getMessage());
         // }
 
-        System.out.println("\n=== Проверка отмены ===");
+        // System.out.println("\n=== Проверка отмены ===");
 
-        Ticket cancelable = new Ticket(10, "Отменяемая заявка", "Проверка cancel()", TicketPriority.LOW);
-        System.out.println("До отмены: " + cancelable);
-        cancelable.cancel();
-        System.out.println("После отмены " + cancelable);
+        // Ticket cancelable = new Ticket(10, "Отменяемая заявка", "Проверка cancel()", TicketPriority.LOW);
+        // System.out.println("До отмены: " + cancelable);
+        // cancelable.cancel();
+        // System.out.println("После отмены " + cancelable);
 
-        cancelable.cancel();
+        // cancelable.cancel();
 
-        Ticket closedTicket = new Ticket(11, "Закрытая заявка", "Проверка cancel() на CLOSED", TicketPriority.LOW);
-        closedTicket.startProcessing();
-        closedTicket.resolve();
-        closedTicket.close();
-        closedTicket.cancel();
-        System.out.println("После попытки отмены закрытой: " + closedTicket);
+        // Ticket closedTicket = new Ticket(11, "Закрытая заявка", "Проверка cancel() на CLOSED", TicketPriority.LOW);
+        // closedTicket.startProcessing();
+        // closedTicket.resolve();
+        // closedTicket.close();
+        // closedTicket.cancel();
+        // System.out.println("После попытки отмены закрытой: " + closedTicket);
+
+        System.out.println("\n=== Смена канала уведомлений ===");
+
+        Ticket emailTicket = new Ticket(20, "Тест email", "Проверка EmailnotificationService", TicketPriority.MEDIUM);
+        TicketService emailService = new TicketService(new EmailNotificationService());
+        emailService.startTicket(emailTicket);
+
+        Ticket telegramTicket = new Ticket(21, "Тест telegram", "Проверка TelegramNotificationService", TicketPriority.HIGH);
+        TicketService telegramService = new TicketService(new TelegramNotificationService());
+        telegramService.startTicket(telegramTicket);
 
     }
 
